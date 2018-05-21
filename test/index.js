@@ -29,20 +29,22 @@ const bumo = new BumoSDK({
 // });
 //
 
-// try {
-//
-//   // const from = 'privbxyL5ULrCDCjF4r3xNekNT4bpABEKMKioeqP3rEbqTQXDWHeUttg';
-//   // const to = 'buQsBMbFNH3NRJBbFRCPWDzjx7RqRc1hhvn1';
-//   // const amount = 0.1;
-//
+try {
+
+  // const from = 'privbxyL5ULrCDCjF4r3xNekNT4bpABEKMKioeqP3rEbqTQXDWHeUttg';
+  // const to = 'buQsBMbFNH3NRJBbFRCPWDzjx7RqRc1hhvn1';
+  // const amount = 0.1;
+
 //   const from = 'privbs1NhRnS64Gy4eLNYfJDFAsZNCdNWqg8dNCxze26wtQLEQ1d1gnR';
 //   const to = 'buQgE36mydaWh7k4UVdLy5cfBLiPDSVhUoPq';
 //   const amount = 0.1;
+//   const nonce = 120;
 //
 //   const respParams = {
 //     from,
 //     amount,
 //     to,
+//     nonce,
 //   };
 //   bumo.wallet.sendBu(respParams).then(data => {
 //     console.log(data);
@@ -57,10 +59,10 @@ const bumo = new BumoSDK({
 //   console.log('111111111111');
 // }
 
-try {
-  bumo.account.create().then(data => {
-    console.log(data);
-  });
-} catch (err) {
-  console.log(err);
-}
+// try {
+//   bumo.account.create().then(data => {
+//     console.log(data);
+//   });
+// } catch (err) {
+//   console.log(err);
+// }
