@@ -29,33 +29,38 @@ const bumo = new BumoSDK({
 // });
 //
 
+// try {
+//
+//   // const from = 'privbxyL5ULrCDCjF4r3xNekNT4bpABEKMKioeqP3rEbqTQXDWHeUttg';
+//   // const to = 'buQsBMbFNH3NRJBbFRCPWDzjx7RqRc1hhvn1';
+//   // const amount = 0.1;
+//
+//   const from = 'privbs1NhRnS64Gy4eLNYfJDFAsZNCdNWqg8dNCxze26wtQLEQ1d1gnR';
+//   const to = 'buQgE36mydaWh7k4UVdLy5cfBLiPDSVhUoPq';
+//   const amount = 0.1;
+//
+//   const respParams = {
+//     from,
+//     amount,
+//     to,
+//   };
+//   bumo.wallet.sendBu(respParams).then(data => {
+//     console.log(data);
+//   }).catch(err => {
+//     console.log('++++++++++++');
+//     console.log(err);
+//     console.log('++++++++++++');
+//   });
+// } catch (err) {
+//   console.log('111111111111');
+//   console.log(err);
+//   console.log('111111111111');
+// }
+
 try {
-
-  // const from = 'privbxyL5ULrCDCjF4r3xNekNT4bpABEKMKioeqP3rEbqTQXDWHeUttg';
-  // const to = 'buQsBMbFNH3NRJBbFRCPWDzjx7RqRc1hhvn1';
-  // const amount = 0.1;
-
-  const from = 'privbs1NhRnS64Gy4eLNYfJDFAsZNCdNWqg8dNCxze26wtQLEQ1d1gnR';
-  const to = 'buQgE36mydaWh7k4UVdLy5cfBLiPDSVhUoPq';
-  const amount = 0.1;
-
-  const respParams = {
-    from,
-    amount,
-    to,
-  };
-  bumo.wallet.sendBu(respParams).then(data => {
+  bumo.account.create().then(data => {
     console.log(data);
-  }).catch(err => {
-    console.log('++++++++++++');
-    console.log(err);
-    console.log('++++++++++++');
   });
 } catch (err) {
-  console.log('111111111111');
   console.log(err);
-  console.log('111111111111');
 }
-
-// const data = bumo.account.create();
-// console.log(data);
