@@ -2,19 +2,19 @@
   "name": "exchange",
   "version": "1.0.0",
   "description": "",
-  "main": "lib",
+  "main": "index.js",
   "scripts": {
     "test": "node test"
   },
   "author": "",
   "license": "ISC",
   "devDependencies": {
+    "co": "^4.6.0",
     "eslint": "^4.19.1",
     "eslint-config-egg": "^7.0.0"
   },
   "dependencies": {
     "axios": "^0.18.0",
-    "co": "^4.6.0",
     "co-wrap-all": "^1.0.0",
     "google-protobuf": "^3.5.0",
     "pify": "^3.0.0",
