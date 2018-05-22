@@ -29,7 +29,7 @@ const bumo = new BumoSDK({
 // });
 //
 
-try {
+// try {
 
   // const from = 'privbxyL5ULrCDCjF4r3xNekNT4bpABEKMKioeqP3rEbqTQXDWHeUttg';
   // const to = 'buQsBMbFNH3NRJBbFRCPWDzjx7RqRc1hhvn1';
@@ -59,10 +59,10 @@ try {
 //   console.log('111111111111');
 // }
 
-// try {
-//   bumo.account.create().then(data => {
-//     console.log(data);
-//   });
-// } catch (err) {
-//   console.log(err);
-// }
+try {
+  bumo.account.create().then(data => {
+    console.log(data);
+  });
+} catch (err) {
+  console.log(err);
+}

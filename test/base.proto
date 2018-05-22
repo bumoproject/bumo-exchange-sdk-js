@@ -1,8 +1,0 @@
-
-syntax = "proto3";
-
-message AwesomeMessage {
-    string awesome_field = 1; // becomes awesomeField
-    string name = 2;
-    string email = 3;
-}
