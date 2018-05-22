@@ -81,19 +81,22 @@ describe('Test bumo-exchange-sdk', function() {
 
   });
 
-  it('test: wallet.getTransactionHistory', function() {
+  it('test: getTransaction', function() {
+    const hash = 'e27d287913dcbe5452d38a567b10f6b73a2a22a2f3c393180ab930286eb8ffd9';
     co(function* () {
       try {
-        const data = yield bumo.wallet.getTransactionHistory({ ledgerSeq: 100 });
+        const result = yield bumo.getTransaction(hash);
+        // console.log(result);
       } catch (err) {
         console.log(err.message);
       }
     }).catch(err => {
-      console.log(err.message);
+      console.log(err);
     });
+
   });
 
-  it('test: wallet.sendBu', function() {
+  it('test: sendBu', function() {
     co(function* () {
       try {
         const from = 'privbs1NhRnS64Gy4eLNYfJDFAsZNCdNWqg8dNCxze26wtQLEQ1d1gnR';
@@ -101,14 +104,8 @@ describe('Test bumo-exchange-sdk', function() {
         const amount = 0.1;
         const nonce = 121;
 
-        const respParams = {
-          from,
-          amount,
-          to,
-          nonce,
-        };
-        const data = yield bumo.wallet.sendBu(respParams);
-        console.log(data);
+        const data = yield bumo.sendBu(from, to, amount, nonce);
+
         data.error_code.should.equal(0);
 
         const from2 = 'privbs1NhRnS64Gy4eLNYfJDFAsZNCdNWqg8dNCxze26wtQLEQ1d1gnR' + 'abc';
@@ -116,14 +113,9 @@ describe('Test bumo-exchange-sdk', function() {
         const amount2 = 0.1;
         const nonce2 = 121;
 
-        const respParams2 = {
-          from: from2,
-          amount: amount2,
-          to: to2,
-          nonce: nonce2,
-        };
-        const data2 = yield bumo.wallet.sendBu(respParams);
-        data2.error_code.should.equal(0);
+
+        const data2 = yield bumo.sendBu(from2, to2, amount2, nonce2);
+        data2.error_code.should.not.equal(0);
 
       } catch (err) {
         console.log(err.message);

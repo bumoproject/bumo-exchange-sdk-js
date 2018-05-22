@@ -152,14 +152,12 @@ bumo.account.getInfo('buQXz2qbTb3yx2cRyCz92EnaUKHrwZognnDw').then(data => {
 
 
 #### 查询交易历史
-调用：bumo.wallet.getTransactionHistory(options)， 该方法返回Promise
+调用：bumo.getTransaction(transactionHash)， 该方法返回Promise
 ###### 传入参数
-options 是一个对象，可以包含如下属性
 
    参数      |     类型     |     描述                    |
 ----------- | ------------ | ----------------- |
-ledgerSeq |    Number    | 查询指定区块中的所有交易             |
-hash |    String    | 用交易的唯一标识hash查询             |
+transactionHash |    String    | 交易的唯一标识hash            |
 
 > 注意: 上述两个参数产生的约束条件是逻辑与的关系，如果您同时指定两个参数，系统将在指定的区块中查询指定的交易
 
@@ -174,7 +172,7 @@ data |    Object   | 返回数据 |
 ###### 实例：
 
 ```js
-bumo.wallet.getTransactionHistory({ ledgerSeq: 100 }).then(data => {
+bumo.getTransaction(transactionHash).then(data => {
   console.log(data);
 }).catch(err => {
   console.log(err.message);
@@ -182,9 +180,8 @@ bumo.wallet.getTransactionHistory({ ledgerSeq: 100 }).then(data => {
 ```
 
 #### 发送BU
-调用：bumo.wallet.getTransactionHistory(options)， 该方法返回Promise
+调用：bumo.sendBu(from, to, amount, nonce, gasPrice, feeLimit)， 该方法返回Promise
 ###### 传入参数
-options 是一个对象，可以包含如下属性
 
    参数      |     类型     |     描述                    |
 ----------- | ------------ | ----------------- |
