@@ -32,7 +32,7 @@ ips|   Array    | ip地址:端口             |
 ###### 实例：
 
 ```js
-const BumoSDK = require('bumo-exchange');
+const BumoSDK = require('bumo-exchange-sdk');
 
 const bumo = new BumoSDK({
   ips: [ 'seed1.bumotest.io:26002' ],
@@ -41,6 +41,28 @@ const bumo = new BumoSDK({
 ```
 #### 生成账户
 调用：bumo.account.create()， 该方法返回Promise
+###### 返回值
+返回值是一个对象：对象属性如下
+
+   参数     |     类型     |     描述                    |
+----------- | ------------ | --------------------------- |
+error_code |    Number    | 错误码             |
+msg |    String      | 描述信息 |
+data |    Object   | 返回数据 |
+
+data值是一个对象：格式如下
+
+```js
+{
+  privateKey: 'privbzRqpiYdPPRAPNiP1qtXgcruwf3JipRiFZzuQ6ndWU1MbRdkYP2u',
+  publicKey: 'b001e19aa19d58ed1bc07bf7fe32ff86899273c83b796d7fda82b27c85c218845330b869d216',
+  address: 'buQdgwWDJWEPsF6tJMdm2c4YPB6vdc5fRVwQ'
+}
+
+privateKey: 私钥
+publicKey: 公钥
+address: 地址
+```
 ###### 实例：
 
 ```js
@@ -65,6 +87,16 @@ address 	  |    String    | 账户地址              |
 error_code |    Number    | 错误码             |
 msg |    String      | 描述信息 |
 data |    Object   | 返回数据 |
+data值是一个对象：格式如下
+
+```js
+{
+  balance: 9968804800
+}
+
+balance: 账户余额
+```
+
 ###### 实例：
 
 ```js
@@ -94,6 +126,20 @@ address 	  |    String    | 账户地址              |
 error_code |    Number    | 错误码             |
 msg |    String      | 描述信息 |
 data |    Object   | 返回数据 |
+data值是一个对象：格式如下
+```js
+{
+  address: 'buQsBMbFNH3NRJBbFRCPWDzjx7RqRc1hhvn1',
+  balance: 9968804800,
+  nonce: 2,
+  assets: null
+}
+
+address: 账户地址
+balance: 账户余额
+nonce: 交易序号
+assets: 该账号的所有资产
+```
 ###### 实例：
 
 ```js
@@ -112,7 +158,11 @@ options 是一个对象，可以包含如下属性
 
    参数      |     类型     |     描述                    |
 ----------- | ------------ | ----------------- |
-ledgerSeq |    Number    | 账户地址              |
+ledgerSeq |    Number    | 查询指定区块中的所有交易             |
+hash |    String    | 用交易的唯一标识hash查询             |
+
+> 注意: 上述两个参数产生的约束条件是逻辑与的关系，如果您同时指定两个参数，系统将在指定的区块中查询指定的交易
+
 ###### 返回值
 返回值是一个对象：对象属性如下
 
@@ -141,7 +191,7 @@ options 是一个对象，可以包含如下属性
 from |   String    | 发送者的私钥           |
 to |   String    | 目标账户地址           |
 amount |  Number    | 要转移的数量（单位是BU）        |
-nonce |  Number    | 交易序号       |
+nonce |  Number    | 交易序号 (可通过调用bumo.account.getInfo() 函数获得)      |
 gasPrice |  Number    | [可选参数] gas价格(不小于配置的最低值) (单位是MO)|
 feeLimit |  Number    | [可选参数] 愿为交易花费的手续费  (单位是MO)   |
 > 注意：amount, gasPrice和feeLimit的单位是MO，且 1 BU = 10^8 MO

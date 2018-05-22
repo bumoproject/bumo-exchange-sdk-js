@@ -108,6 +108,7 @@ describe('Test bumo-exchange-sdk', function() {
           nonce,
         };
         const data = yield bumo.wallet.sendBu(respParams);
+        console.log(data);
         data.error_code.should.equal(0);
 
         const from2 = 'privbs1NhRnS64Gy4eLNYfJDFAsZNCdNWqg8dNCxze26wtQLEQ1d1gnR' + 'abc';
