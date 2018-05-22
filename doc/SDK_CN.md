@@ -151,7 +151,7 @@ bumo.account.getInfo('buQXz2qbTb3yx2cRyCz92EnaUKHrwZognnDw').then(data => {
 ```
 
 
-#### 查询交易历史
+#### 查询交易详情
 调用：bumo.getTransaction(transactionHash)， 该方法返回Promise
 ###### 传入参数
 
