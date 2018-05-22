@@ -87,6 +87,23 @@ describe('Test bumo-exchange-sdk', function() {
       try {
         const result = yield bumo.getTransaction(hash);
         // console.log(result);
+        result.error_code.should.equal(0);
+      } catch (err) {
+        console.log(err.message);
+      }
+    }).catch(err => {
+      console.log(err);
+    });
+
+  });
+
+  it('test: getBlock', function() {
+    co(function* () {
+      try {
+        const blockNumber = 100;
+        const result = yield bumo.getBlock(blockNumber);
+        // console.log(result);
+        result.error_code.should.equal(0);
       } catch (err) {
         console.log(err.message);
       }
