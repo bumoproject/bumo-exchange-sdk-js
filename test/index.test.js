@@ -21,15 +21,15 @@ describe('Test bumo-exchange-sdk', function() {
       obj.should.have.property('data');
 
       obj.data.should.be.a('object');
-      obj.data.should.have.property('encPrivateKey');
-      obj.data.should.have.property('encPublicKey');
+      obj.data.should.have.property('privateKey');
+      obj.data.should.have.property('publicKey');
       obj.data.should.have.property('address');
-      obj.data.encPrivateKey.should.be.a('string');
-      obj.data.encPublicKey.should.be.a('string');
+      obj.data.privateKey.should.be.a('string');
+      obj.data.publicKey.should.be.a('string');
       obj.data.address.should.be.a('string');
 
-      const checkPrivateKey = keypair.checkEncPrivateKey(obj.data.encPrivateKey)
-      const checkPublickKey = keypair.checkEncPublicKey(obj.data.encPublicKey)
+      const checkPrivateKey = keypair.checkEncPrivateKey(obj.data.privateKey)
+      const checkPublickKey = keypair.checkEncPublicKey(obj.data.publicKey)
       const checkAddress = keypair.checkAddress(obj.data.address)
       checkPrivateKey.should.equal(true);
       checkPublickKey.should.equal(true);
