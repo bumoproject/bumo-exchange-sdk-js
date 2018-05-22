@@ -157,7 +157,7 @@ bumo.account.getInfo('buQXz2qbTb3yx2cRyCz92EnaUKHrwZognnDw').then(data => {
 
    参数      |     类型     |     描述                    |
 ----------- | ------------ | ----------------- |
-transactionHash |    String    | 交易的唯一标识hash            |
+transactionHash |    String    | 交易中的唯一hash            |
 
 ###### 返回值
 返回值是一个对象：对象属性如下
@@ -199,8 +199,17 @@ feeLimit |  Number    | [可选参数] 愿为交易花费的手续费  (单位�
 error_code |    Number    | 错误码             |
 msg |    String      | 描述信息 |
 data |    Object   | 返回数据 |
-###### 实例：
 
+
+data值是一个对象：格式如下
+```js
+{
+	hash: '47c2c92b95c68865a32563a66adeb40161ed6175009c19cd427fff89570cc74b'
+}
+
+hash: 交易中的唯一hash 
+```
+###### 实例：
 ```js
 const from = 'privbs1NhRnS64Gy4eLNYfJDFAsZNCdNWqg8dNCxze26wtQLEQ1d1gnR';
 const to = 'buQgE36mydaWh7k4UVdLy5cfBLiPDSVhUoPq';
