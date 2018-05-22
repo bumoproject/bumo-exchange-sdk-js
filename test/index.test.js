@@ -86,7 +86,6 @@ describe('Test bumo-exchange-sdk', function() {
     co(function* () {
       try {
         const result = yield bumo.getTransaction(hash);
-        // console.log(result);
         result.error_code.should.equal(0);
       } catch (err) {
         console.log(err.message);
@@ -102,8 +101,22 @@ describe('Test bumo-exchange-sdk', function() {
       try {
         const blockNumber = 100;
         const result = yield bumo.getBlock(blockNumber);
-        // console.log(result);
+        // console.log(JSON.stringify(result));
         result.error_code.should.equal(0);
+      } catch (err) {
+        console.log(err.message);
+      }
+    }).catch(err => {
+      console.log(err);
+    });
+
+  });
+
+  it('test: checkBlockStatus', function() {
+    co(function* () {
+      try {
+        const result = yield bumo.checkBlockStatus();
+        result.should.be.a('boolean');
       } catch (err) {
         console.log(err.message);
       }
