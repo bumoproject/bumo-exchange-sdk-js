@@ -159,8 +159,6 @@ bumo.account.getInfo('buQXz2qbTb3yx2cRyCz92EnaUKHrwZognnDw').then(data => {
 ----------- | ------------ | ----------------- |
 transactionHash |    String    | 交易的唯一标识hash            |
 
-> 注意: 上述两个参数产生的约束条件是逻辑与的关系，如果您同时指定两个参数，系统将在指定的区块中查询指定的交易
-
 ###### 返回值
 返回值是一个对象：对象属性如下
 
