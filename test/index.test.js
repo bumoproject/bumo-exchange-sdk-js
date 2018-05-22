@@ -105,7 +105,7 @@ describe('Test bumo-exchange-sdk', function() {
         const nonce = 121;
 
         const data = yield bumo.sendBu(from, to, amount, nonce);
-
+        // console.log(data);
         data.error_code.should.equal(0);
 
         const from2 = 'privbs1NhRnS64Gy4eLNYfJDFAsZNCdNWqg8dNCxze26wtQLEQ1d1gnR' + 'abc';
