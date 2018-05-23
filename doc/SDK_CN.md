@@ -444,7 +444,7 @@ const options = {
 	nonce = 121;
 };
 
- bumo.wallet.sendBu(options).then(data => {
+ bumo.sendBu(options).then(data => {
    console.log(data);
  }).catch(err => {
    console.log(err.message);
