@@ -139,25 +139,25 @@ data值是一个对象：格式如下
     amount : 1400,
     key :
     {
-      code : 'CNY',
+      code : 'HNC',
       issuer : 'buQs9npaCq9mNFZG18qu88ZcmXYqd6bqpTU3'
     }
   }],
 }
 
 address: 账户地址
-balance: 账户余额
+balance: 账户BU余额
 nonce: 交易序号
-assets: 该账号的所有资产
-amount: 资产数量
-key: 资产标识
-code: 资产编码
-issuer: 资产发行账户
+assets: 该账户拥有的资产
+    amount: 资产数量
+    key: 资产标识
+        code: 资产编码
+        issuer: 资产发行账户地址
 ```
 ###### 实例：
 
 ```js
-bumo.account.getInfo('buQXz2qbTb3yx2cRyCz92EnaUKHrwZognnDw').then(data => {
+bumo.account.getInfo('buQsBMbFNH3NRJBbFRCPWDzjx7RqRc1hhvn1').then(data => {
   console.log(data);
 }).catch(err => {
   console.log(err.message);
@@ -231,35 +231,38 @@ data值是一个对象：格式如下:
 
 total_count: 交易总数量
 transactions: 交易列表
-actual_fee: 交易的实际费用
-close_time: 交易的关闭时间
-error_code: 交易状态码
-error_desc: 交易状态描述
-hash: 交易hash值
-ledger_seq: 交易所在的区块高度
-signatures: 交易签名列表
-public_key: 公钥
-sign_data: 签名后的数据
-transaction: 交易内容
-fee_limit: 交易手续费
-gas_price: 交易打包费
-nonce: 交易的序列号
-operations: 交易的操作列表
-create_account: 交易操作名称
-contract: 交易合约
-payload: 合约内容
-dest_address: 目标账户地址
-init_balance: 目标账户的初始化余额
-metadatas: 附加信息
-key: 附加信息键
-value: 附加信息值
-priv: 目标账户权限
-master_weight: 目标账户的权重
-thresholds: 门限
-tx_threshold: 交易门限
-type: 交易操作类型
-source_address: 交易的发起账户
-tx_size: 交易所占字节数
+    actual_fee: 交易的实际费用
+    close_time: 交易的关闭时间
+    error_code: 交易状态码
+    error_desc: 交易状态描述
+    hash: 交易hash值
+    ledger_seq: 交易所在的区块高度
+    signatures: 交易签名列表
+        public_key: 公钥
+        sign_data: 签名后的数据
+    transaction: 交易内容
+        fee_limit: 交易手续费
+        gas_price: 交易打包费
+        nonce: 交易的序列号
+        operations: 交易的操作列表
+        
+            create_account: 交易操作名称
+                contract: 交易合约
+                    payload: 合约内容
+                    
+                    
+            dest_address: 目标账户地址
+            init_balance: 目标账户的初始化余额
+            metadatas: 附加信息
+                key: 附加信息键
+                value: 附加信息值
+            priv: 目标账户权限
+                master_weight: 目标账户的权重
+                thresholds: 门限
+                    tx_threshold: 交易门限
+            type: 交易操作类型(1 创建账户；2 发行资产；3 转移资产；4 设置metadata；5 设置权重；6 设置门限；7 支付BU;)
+    source_address: 交易的发起账户
+    tx_size: 交易所占字节数
 
 ```
 
