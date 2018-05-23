@@ -402,8 +402,8 @@ bumo.checkAddress('buQgE36mydaWh7k4UVdLy5cfBLiPDSVhUoPq').then(data => {
 
 
 #### 发送BU
-调用：bumo.sendBu(senderPrivateKey, receiverAddress, amount, nonce, gasPrice, feeLimit)， 该方法返回Promise
-###### 传入参数
+调用：bumo.sendBu(options)， 该方法返回Promise
+###### optins是一个js对象，结构
 
    参数      |     类型     |     描述                    |
 ----------- | ------------ | ----------------- |
