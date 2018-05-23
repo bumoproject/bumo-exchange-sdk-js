@@ -11,6 +11,7 @@ bumo-exchange-sdk-js接口文档
     - [发送BU](#发送bu)
     - [查询账户余额](#查询账户余额)
     - [查询账户信息](#查询账户信息)
+    - [验证账户地址](#验证账户地址)
     - [查询交易详情](#查询交易详情)
     - [通过区块高度查询区块交易](#通过区块高度查询区块交易)
     - [获取当前区块高度](#获取当前区块高度)
@@ -361,6 +362,44 @@ bumo.getBlockNumber()().then(data => {
   console.log(err.message);
 });
 ```
+
+
+#### 验证账户地址
+调用：bumo.checkAddress(address)， 该方法返回Promise
+
+###### 传入参数
+
+   参数      |     类型     |     描述                    |
+----------- | ------------ | ----------------- |
+address |    String    | 账户地址          |
+
+###### 返回值
+返回值是一个对象：对象属性如下
+
+   参数     |     类型     |     描述                    |
+----------- | ------------ | --------------------------- |
+error_code |    Number    | 错误码             |
+msg |    String      | 描述信息 |
+data |    Object   | 返回数据 |
+
+data值是一个布尔值：格式如下
+
+```js
+true: 有效地址
+false： 无效地址
+```
+
+
+###### 实例：
+
+```js
+bumo.checkAddress('buQgE36mydaWh7k4UVdLy5cfBLiPDSVhUoPq').then(data => {
+  console.log(data);
+}).catch(err => {
+  console.log(err.message);
+});
+```
+
 
 #### 发送BU
 调用：bumo.sendBu(senderPrivateKey, receiverAddress, amount, nonce, gasPrice, feeLimit)， 该方法返回Promise
