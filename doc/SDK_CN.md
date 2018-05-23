@@ -325,15 +325,48 @@ bumo.checkBlockStatus().then(data => {
 });
 ```
 
+#### 获取当前区块高度
+调用：bumo.getBlockNumber()， 该方法返回Promise
+
+###### 返回值
+返回值是一个对象：对象属性如下
+
+   参数     |     类型     |     描述                    |
+----------- | ------------ | --------------------------- |
+error_code |    Number    | 错误码             |
+msg |    String      | 描述信息 |
+data |    Object   | 返回数据 |
+
+data值是一个对象：格式如下
+
+```js
+{ 
+	seq: 206193 
+}
+
+seq: 当前区块高度
+```
+
+
+###### 实例：
+
+```js
+bumo.getBlockNumber()().then(data => {
+  console.log(data);
+}).catch(err => {
+  console.log(err.message);
+});
+```
+
 #### 发送BU
-调用：bumo.sendBu(from, to, amount, nonce, gasPrice, feeLimit)， 该方法返回Promise
+调用：bumo.sendBu(senderPrivateKey, receiverAddress, amount, nonce, gasPrice, feeLimit)， 该方法返回Promise
 ###### 传入参数
 
    参数      |     类型     |     描述                    |
 ----------- | ------------ | ----------------- |
-from |   String    | 发送者的私钥           |
-to |   String    | 目标账户地址           |
-amount |  Number    | 要转移的数量（单位是BU）        |
+senderPrivateKey |   String    | 发送者的私钥           |
+receiverAddress |   String    | 目标账户地址           |
+amount |  Number    | 要转移的数量（单位是MO      |
 nonce |  Number    | 交易序号 (可通过调用bumo.account.getInfo() 函数获得)      |
 gasPrice |  Number    | [可选参数] gas价格(不小于配置的最低值) (单位是MO)|
 feeLimit |  Number    | [可选参数] 愿为交易花费的手续费  (单位是MO)   |
@@ -399,3 +432,4 @@ const options = {
 8 | 函数参数数目不正确
 9 | 函数参数类型不正确
 10 | 函数参数不能为空
+11 | 内部服务器错误

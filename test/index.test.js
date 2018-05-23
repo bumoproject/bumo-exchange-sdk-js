@@ -118,7 +118,37 @@ describe('Test bumo-exchange-sdk', function() {
     co(function* () {
       try {
         const result = yield bumo.checkBlockStatus();
-        result.should.be.a('boolean');
+        // console.log(result);
+        // console.log(result);
+        result.data.should.be.a('boolean');
+      } catch (err) {
+        console.log(err.message);
+      }
+    }).catch(err => {
+      console.log(err);
+    });
+
+  });
+
+  it('test: getBlockNumber', function() {
+    co(function* () {
+      try {
+        const result = yield bumo.getBlockNumber();
+        result.data.seq.should.be.a('number');
+      } catch (err) {
+        console.log(err.message);
+      }
+    }).catch(err => {
+      console.log(err);
+    });
+
+  });
+
+  it('test: account.checkAddress', function() {
+    co(function* () {
+      try {
+        const result = yield bumo.account.checkAddress('buQXz2qbTb3yx2cRyCz92EnaUKHrwZognnDw');
+        result.data.should.equal(true);
       } catch (err) {
         console.log(err.message);
       }
@@ -133,11 +163,11 @@ describe('Test bumo-exchange-sdk', function() {
       try {
         const from = 'privbs1NhRnS64Gy4eLNYfJDFAsZNCdNWqg8dNCxze26wtQLEQ1d1gnR';
         const to = 'buQgE36mydaWh7k4UVdLy5cfBLiPDSVhUoPq';
-        const amount = 0.1;
+        const amount = Math.pow(2,62);
         const nonce = 121;
 
         const data = yield bumo.sendBu(from, to, amount, nonce);
-        // console.log(data);
+        
         data.error_code.should.equal(0);
 
         const from2 = 'privbs1NhRnS64Gy4eLNYfJDFAsZNCdNWqg8dNCxze26wtQLEQ1d1gnR' + 'abc';
@@ -150,7 +180,8 @@ describe('Test bumo-exchange-sdk', function() {
         data2.error_code.should.not.equal(0);
 
       } catch (err) {
-        console.log(err.message);
+        console.log(err);
+        // console.log(err.message);
       }
     }).catch(err => {
       console.log(err.message);
