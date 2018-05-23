@@ -16,60 +16,65 @@ npm test
 ```js
 'use strict';
 
-const { keypair } = require('bumo-encryption');
-const BumoSDK = require('../index');
+const BumoSDK = require('bumo-exchange-sdk');
 
 const bumo = new BumoSDK({
   ips: [ 'seed1.bumotest.io:26002' ],
 });
 
-// create account
+
 bumo.account.create().then(data => {
-  console.log(data);
+  console.log(JSON.stringify(data));
 }).catch(err => {
   console.log(err.message);
 });
 
-// Get account balance
+
 bumo.account.getBalance('buQXz2qbTb3yx2cRyCz92EnaUKHrwZognnDw').then(data => {
-  console.log(data);
+  console.log(JSON.stringify(data));
 }).catch(err => {
   console.log(err.message);
 });
 
-// Get account info
+
 bumo.account.getInfo('buQXz2qbTb3yx2cRyCz92EnaUKHrwZognnDw').then(data => {
-  console.log(data);
+  console.log(JSON.stringify(data));
 }).catch(err => {
   console.log(err.message);
 });
 
-// Get transaction history
-bumo.wallet.getTransactionHistory({ ledgerSeq: 100 }).then(data => {
-  console.log(data);
+
+bumo.getTransaction('e27d287913dcbe5452d38a567b10f6b73a2a22a2f3c393180ab930286eb8ffd9').then(data => {
+  console.log(JSON.stringify(data));
 }).catch(err => {
   console.log(err.message);
 });
 
-// sendBu
+
+bumo.getBlock(100).then(data => {
+  console.log(JSON.stringify(data));
+}).catch(err => {
+  console.log(err.message);
+});
+
+
+bumo.checkBlockStatus().then(data => {
+  console.log(JSON.stringify(data));
+}).catch(err => {
+  console.log(err.message);
+});
+
+
 const from = 'privbs1NhRnS64Gy4eLNYfJDFAsZNCdNWqg8dNCxze26wtQLEQ1d1gnR';
 const to = 'buQgE36mydaWh7k4UVdLy5cfBLiPDSVhUoPq';
 const amount = 0.1;
 const nonce = 121;
 
-const respParams = {
-  from,
-  amount,
-  to,
-  nonce,
-};
-
- bumo.wallet.sendBu(respParams).then(data => {
-   console.log(data);
+ bumo.sendBu(from, to, amount, nonce).then(data => {
+   console.log(JSON.stringify(data));
  }).catch(err => {
    console.log(err.message);
  });
-
 
 ```
 

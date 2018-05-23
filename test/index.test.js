@@ -65,13 +65,15 @@ describe('Test bumo-exchange-sdk', function() {
     co(function* () {
       try {
         const info = yield bumo.account.getInfo('buQXz2qbTb3yx2cRyCz92EnaUKHrwZognnDw');
-        const account = yield bumo.account.getInfo('buQsBMbFNH3NRJBbFRCPWDzjx7RqRc1hhvn1')
+        // const account = yield bumo.account.getInfo('buQsBMbFNH3NRJBbFRCPWDzjx7RqRc1hhvn1')
+        const account = yield bumo.account.getInfo('buQaKVttFz5wSGWErbCnQteY6qTbSHkTouVr')
         info.should.be.a('object');
         info.should.have.property('error_code');
         info.should.have.property('msg');
         info.should.have.property('data');
         info.error_code.should.not.equal(0);
         account.error_code.should.equal(0);
+        // console.log(account);
       } catch (err) {
         console.log(err.message);
       }

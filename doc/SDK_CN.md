@@ -128,18 +128,31 @@ error_code |    Number    | 错误码             |
 msg |    String      | 描述信息 |
 data |    Object   | 返回数据 |
 data值是一个对象：格式如下
+
 ```js
 {
   address: 'buQsBMbFNH3NRJBbFRCPWDzjx7RqRc1hhvn1',
   balance: 9968804800,
   nonce: 2,
-  assets: null
+  assets : [
+  {
+    amount : 1400,
+    key :
+    {
+      code : 'CNY',
+      issuer : 'buQs9npaCq9mNFZG18qu88ZcmXYqd6bqpTU3'
+    }
+  }],
 }
 
 address: 账户地址
 balance: 账户余额
 nonce: 交易序号
 assets: 该账号的所有资产
+amount: 资产数量
+key: 资产标识
+code: 资产编码
+issuer: 资产发行账户
 ```
 ###### 实例：
 
@@ -170,6 +183,7 @@ msg |    String      | 描述信息 |
 data |    Object   | 返回数据 |
 
 data值是一个对象：格式如下:
+
 ```js
 
 {
@@ -336,12 +350,13 @@ data |    Object   | 返回数据 |
 
 
 data值是一个对象：格式如下
+
 ```js
 {
 	hash: '47c2c92b95c68865a32563a66adeb40161ed6175009c19cd427fff89570cc74b'
 }
 
-hash: 交易中的唯一hash
+hash: 交易hash值
 ```
 ###### 实例：
 ```js
