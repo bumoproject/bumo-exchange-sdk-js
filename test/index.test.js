@@ -162,7 +162,7 @@ describe('Test bumo-exchange-sdk', function() {
     co(function* () {
       try {
         const options = {
-          senderPrivateKey: 'privbs1NhRnS64Gy4eLNYfJDFAsZNCdNWqg8dNCxze26wtQLEQ1d1gnR',
+          senderPrivateKey: 'privbsMCSqvv8kJ1A3Zt9RWjDHyG3jRdGpj9Jrgfxw7tdz3jZzhqA55v',
           receiverAddress: 'buQgE36mydaWh7k4UVdLy5cfBLiPDSVhUoPq',
           amount: Math.pow(2,62),
           nonce: 121,
@@ -171,7 +171,7 @@ describe('Test bumo-exchange-sdk', function() {
 
         data.error_code.should.equal(0);
 
-        // const from2 = 'privbs1NhRnS64Gy4eLNYfJDFAsZNCdNWqg8dNCxze26wtQLEQ1d1gnR' + 'abc';
+        // const from2 = 'privbsMCSqvv8kJ1A3Zt9RWjDHyG3jRdGpj9Jrgfxw7tdz3jZzhqA55v' + 'abc';
         // const to2 = 'buQgE36mydaWh7k4UVdLy5cfBLiPDSVhUoPq';
         // const amount2 = 0.1;
         // const nonce2 = 121;

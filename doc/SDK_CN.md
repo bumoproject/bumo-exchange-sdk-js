@@ -13,6 +13,7 @@ bumo-exchange-sdk-js接口文档
     - [查询账户信息](#查询账户信息)
     - [查询交易详情](#查询交易详情)
     - [通过区块高度查询区块交易](#通过区块高度查询区块交易)
+    - [获取当前区块高度](#获取当前区块高度)
 
 - [错误码](#错误码)
 
@@ -245,12 +246,12 @@ transactions: 交易列表
         gas_price: 交易打包费
         nonce: 交易的序列号
         operations: 交易的操作列表
-        
+
             create_account: 交易操作名称
                 contract: 交易合约
                     payload: 合约内容
-                    
-                    
+
+
             dest_address: 目标账户地址
             init_balance: 目标账户的初始化余额
             metadatas: 附加信息
@@ -343,8 +344,8 @@ data |    Object   | 返回数据 |
 data值是一个对象：格式如下
 
 ```js
-{ 
-	seq: 206193 
+{
+	seq: 206193
 }
 
 seq: 当前区块高度
@@ -395,17 +396,13 @@ data值是一个对象：格式如下
 hash: 交易hash值
 ```
 ###### 实例：
-```js
-const from = 'privbs1NhRnS64Gy4eLNYfJDFAsZNCdNWqg8dNCxze26wtQLEQ1d1gnR';
-const to = 'buQgE36mydaWh7k4UVdLy5cfBLiPDSVhUoPq';
-const amount = 0.1;
-const nonce = 121;
 
+```js
 const options = {
-  from,
-  amount,
-  to,
-  nonce,
+	senderPrivateKey = 'privbsMCSqvv8kJ1A3Zt9RWjDHyG3jRdGpj9Jrgfxw7tdz3jZzhqA55v';
+	receiverAddress = 'buQgE36mydaWh7k4UVdLy5cfBLiPDSVhUoPq';
+	amount = 0.1;
+	nonce = 121;
 };
 
  bumo.wallet.sendBu(options).then(data => {
