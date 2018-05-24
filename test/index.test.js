@@ -84,7 +84,7 @@ describe('Test bumo-exchange-sdk', function() {
   });
 
   it('test: getTransaction', function() {
-    const hash = 'e27d287913dcbe5452d38a567b10f6b73a2a22a2f3c393180ab930286eb8ffd9AAA';
+    const hash = 'e27d287913dcbe5452d38a567b10f6b73a2a22a2f3c393180ab930286eb8ffd9';
     co(function* () {
       try {
         const result = yield bumo.getTransaction(hash);
@@ -170,24 +170,13 @@ describe('Test bumo-exchange-sdk', function() {
           receiverAddress: 'buQtGi7QmaiaMDygKxMAsKPyLicYjPV2xKVq',
           // receiverAddress: 'buQsBMbFNH3NRJBbFRCPWDzjx7RqRc1hhvn1',
           // amount: Math.pow(2,62),
-          amount: 1000 * 0.01,
-          nonce: 1210,
+          amount: 100000000 * 0.01,
+          nonce: 100,
         }
-        const info = yield bumo.account.getInfo(options.receiverAddress);
-        // console.log(data);
-        // options.nonce = info.data.nonce;
+
         const data = yield bumo.sendBu(options);
         // console.log(data);
-        // data.error_code.should.equal(0);
-
-        // const from2 = 'privbsMCSqvv8kJ1A3Zt9RWjDHyG3jRdGpj9Jrgfxw7tdz3jZzhqA55v' + 'abc';
-        // const to2 = 'buQgE36mydaWh7k4UVdLy5cfBLiPDSVhUoPq';
-        // const amount2 = 0.1;
-        // const nonce2 = 121;
-        //
-        //
-        // const data2 = yield bumo.sendBu(from2, to2, amount2, nonce2);
-        // data2.error_code.should.not.equal(0);
+        data.error_code.should.equal(0);
 
       } catch (err) {
         console.log(err);
