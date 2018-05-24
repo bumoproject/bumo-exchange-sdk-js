@@ -170,13 +170,14 @@ describe('Test bumo-exchange-sdk', function() {
           receiverAddress: 'buQtGi7QmaiaMDygKxMAsKPyLicYjPV2xKVq',
           // receiverAddress: 'buQsBMbFNH3NRJBbFRCPWDzjx7RqRc1hhvn1',
           // amount: Math.pow(2,62),
-          amount: 100000000 * 0.01,
+          // amount: 100000000 * 0.01,
+          amount: 1,
           nonce: 100,
         }
 
         const data = yield bumo.sendBu(options);
         // console.log(data);
-        data.error_code.should.equal(0);
+        data.error_code.should.not.equal(0);
 
       } catch (err) {
         console.log(err);
