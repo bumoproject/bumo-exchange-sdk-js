@@ -84,7 +84,7 @@ describe('Test bumo-exchange-sdk', function() {
   });
 
   it('test: getTransaction', function() {
-    const hash = 'e27d287913dcbe5452d38a567b10f6b73a2a22a2f3c393180ab930286eb8ffd9';
+    const hash = 'e27d287913dcbe5452d38a567b10f6b73a2a22a2f3c393180ab930286eb8ffd9AAA';
     co(function* () {
       try {
         const result = yield bumo.getTransaction(hash);
@@ -103,8 +103,12 @@ describe('Test bumo-exchange-sdk', function() {
       try {
         const blockNumber = 100;
         const result = yield bumo.getBlock(blockNumber);
-        // console.log(JSON.stringify(result));
+
+        const blockNumberNotExist = 212534;
+        const data = yield bumo.getBlock(blockNumberNotExist);
         result.error_code.should.equal(0);
+        data.error_code.should.not.equal(0);
+
       } catch (err) {
         console.log(err.message);
       }
@@ -162,14 +166,19 @@ describe('Test bumo-exchange-sdk', function() {
     co(function* () {
       try {
         const options = {
-          senderPrivateKey: 'privbsMCSqvv8kJ1A3Zt9RWjDHyG3jRdGpj9Jrgfxw7tdz3jZzhqA55v',
-          receiverAddress: 'buQgE36mydaWh7k4UVdLy5cfBLiPDSVhUoPq',
-          amount: Math.pow(2,62),
-          nonce: 121,
+          senderPrivateKey: 'privbwAAXFXsf4z7VtzPtWFmfDM8dEGZ97fsskUaJYeoduCCMxxv8jnH',
+          receiverAddress: 'buQtGi7QmaiaMDygKxMAsKPyLicYjPV2xKVq',
+          // receiverAddress: 'buQsBMbFNH3NRJBbFRCPWDzjx7RqRc1hhvn1',
+          // amount: Math.pow(2,62),
+          amount: 1000 * 0.01,
+          nonce: 1210,
         }
+        const info = yield bumo.account.getInfo(options.receiverAddress);
+        // console.log(data);
+        // options.nonce = info.data.nonce;
         const data = yield bumo.sendBu(options);
-
-        data.error_code.should.equal(0);
+        // console.log(data);
+        // data.error_code.should.equal(0);
 
         // const from2 = 'privbsMCSqvv8kJ1A3Zt9RWjDHyG3jRdGpj9Jrgfxw7tdz3jZzhqA55v' + 'abc';
         // const to2 = 'buQgE36mydaWh7k4UVdLy5cfBLiPDSVhUoPq';
