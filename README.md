@@ -44,6 +44,13 @@ bumo.account.getInfo('buQXz2qbTb3yx2cRyCz92EnaUKHrwZognnDw').then(data => {
 });
 
 
+bumo.account.checkAddress('buQgE36mydaWh7k4UVdLy5cfBLiPDSVhUoPq').then(data => {
+  console.log(JSON.stringify(data));
+}).catch(err => {
+  console.log(err.message);
+});
+
+
 bumo.getTransaction('e27d287913dcbe5452d38a567b10f6b73a2a22a2f3c393180ab930286eb8ffd9').then(data => {
   console.log(JSON.stringify(data));
 }).catch(err => {
@@ -66,13 +73,6 @@ bumo.checkBlockStatus().then(data => {
 
 
 bumo.getBlockNumber().then(data => {
-  console.log(JSON.stringify(data));
-}).catch(err => {
-  console.log(err.message);
-});
-
-
-bumo.checkAddress('buQgE36mydaWh7k4UVdLy5cfBLiPDSVhUoPq').then(data => {
   console.log(JSON.stringify(data));
 }).catch(err => {
   console.log(err.message);

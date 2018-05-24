@@ -1,6 +1,6 @@
 {
   "name": "bumo-exchange-sdk",
-  "version": "1.1.0",
+  "version": "1.1.2",
   "description": "bumo exchange sdk",
   "main": "index.js",
   "scripts": {
@@ -21,7 +21,7 @@
   },
   "dependencies": {
     "axios": "^0.18.0",
-    "bumo-encryption": "^1.0.1",
+    "bumo-encryption": "^1.0.2",
     "co-wrap-all": "^1.0.0",
     "google-protobuf": "^3.5.0",
     "is-type-of": "^1.2.0",
