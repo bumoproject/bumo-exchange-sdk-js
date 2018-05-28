@@ -356,7 +356,7 @@ seq: 当前区块高度
 ###### 实例：
 
 ```js
-bumo.getBlockNumber()().then(data => {
+bumo.getBlockNumber().then(data => {
   console.log(data);
 }).catch(err => {
   console.log(err.message);

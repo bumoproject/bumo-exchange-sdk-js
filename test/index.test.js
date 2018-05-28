@@ -171,7 +171,7 @@ describe('Test bumo-exchange-sdk', function() {
           // receiverAddress: 'buQsBMbFNH3NRJBbFRCPWDzjx7RqRc1hhvn1',
           // amount: Math.pow(2,62),
           // amount: 100000000 * 0.01,
-          amount: 1,
+          amount: 100000000,
           nonce: 100,
         }
 
