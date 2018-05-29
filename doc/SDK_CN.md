@@ -438,10 +438,10 @@ hash: 交易hash值
 
 ```js
 const options = {
-	senderPrivateKey = 'privbsMCSqvv8kJ1A3Zt9RWjDHyG3jRdGpj9Jrgfxw7tdz3jZzhqA55v';
-	receiverAddress = 'buQgE36mydaWh7k4UVdLy5cfBLiPDSVhUoPq';
-	amount = 0.1;
-	nonce = 121;
+	senderPrivateKey: 'privbsMCSqvv8kJ1A3Zt9RWjDHyG3jRdGpj9Jrgfxw7tdz3jZzhqA55v',
+	receiverAddress: 'buQgE36mydaWh7k4UVdLy5cfBLiPDSVhUoPq',
+	amount: 0.1,
+	nonce: 121,
 };
 
  bumo.sendBu(options).then(data => {
