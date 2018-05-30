@@ -365,7 +365,7 @@ bumo.getBlockNumber().then(data => {
 
 
 #### 验证账户地址
-调用：bumo.checkAddress(address)， 该方法返回Promise
+调用：bumo.account.checkAddress(address)， 该方法返回Promise
 
 ###### 传入参数
 
@@ -393,7 +393,7 @@ false: 无效地址
 ###### 实例：
 
 ```js
-bumo.checkAddress('buQgE36mydaWh7k4UVdLy5cfBLiPDSVhUoPq').then(data => {
+bumo.account.checkAddress('buQgE36mydaWh7k4UVdLy5cfBLiPDSVhUoPq').then(data => {
   console.log(data);
 }).catch(err => {
   console.log(err.message);
@@ -440,7 +440,7 @@ hash: 交易hash值
 const options = {
 	senderPrivateKey: 'privbsMCSqvv8kJ1A3Zt9RWjDHyG3jRdGpj9Jrgfxw7tdz3jZzhqA55v',
 	receiverAddress: 'buQgE36mydaWh7k4UVdLy5cfBLiPDSVhUoPq',
-	amount: 0.1,
+	amount: 100000000,
 	nonce: 121,
 };
 
