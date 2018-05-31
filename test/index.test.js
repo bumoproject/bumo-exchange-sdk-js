@@ -102,7 +102,6 @@ describe('Test bumo-exchange-sdk', function() {
       try {
         const blockNumber = 100;
         const result = yield bumo.getBlock(blockNumber);
-
         const blockNumberNotExist = 212534;
         const data = yield bumo.getBlock(blockNumberNotExist);
         result.error_code.should.equal(0);
@@ -171,12 +170,18 @@ describe('Test bumo-exchange-sdk', function() {
           // receiverAddress: 'buQsBMbFNH3NRJBbFRCPWDzjx7RqRc1hhvn1',
           // amount: Math.pow(2,62),
           // amount: 100000000 * 0.01,
-          amount: 100000000,
-          nonce: 100,
+          // amount: Number.MAX_VALUE,
+          // amount: 99999999989748001,
+          amount: 2,
+          nonce: 200,
+          // gasPrice: -1,
+          feeLimit:1000000,
+          // amount: 10000000,
+          // nonce: 121,
         }
 
         const data = yield bumo.sendBu(options);
-        // console.log(data);
+
         data.error_code.should.not.equal(0);
 				done();
       } catch (err) {
