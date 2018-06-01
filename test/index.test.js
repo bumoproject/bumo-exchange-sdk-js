@@ -172,16 +172,16 @@ describe('Test bumo-exchange-sdk', function() {
           // amount: 100000000 * 0.01,
           // amount: Number.MAX_VALUE,
           // amount: 99999999989748001,
-          amount: 2,
+          amount: 1000,
           nonce: 200,
-          // gasPrice: -1,
-          feeLimit:1000000,
+          // gasPrice: 0,
+          // feeLimit:0,
           // amount: 10000000,
           // nonce: 121,
         }
 
         const data = yield bumo.sendBu(options);
-
+        // console.log(data);
         data.error_code.should.not.equal(0);
 				done();
       } catch (err) {
