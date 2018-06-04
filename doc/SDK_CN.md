@@ -409,7 +409,7 @@ bumo.account.checkAddress('buQgE36mydaWh7k4UVdLy5cfBLiPDSVhUoPq').then(data => {
 ----------- | ------------ | ----------------- |
 senderPrivateKey |   String    | 发送者的私钥           |
 receiverAddress |   String    | 目标账户地址           |
-amount |  Number    | 要转移的数量（单位是MO      |
+amount |  Number 或 String    | 要转移的数量（单位是MO      |
 nonce |  Number    | 交易序号 (可通过调用bumo.account.getInfo() 函数获得)      |
 gasPrice |  Number    | [可选参数] gas价格(不小于配置的最低值) (单位是MO)|
 feeLimit |  Number    | [可选参数] 愿为交易花费的手续费  (单位是MO)   |
@@ -440,7 +440,7 @@ hash: 交易hash值
 const options = {
 	senderPrivateKey: 'privbsMCSqvv8kJ1A3Zt9RWjDHyG3jRdGpj9Jrgfxw7tdz3jZzhqA55v',
 	receiverAddress: 'buQgE36mydaWh7k4UVdLy5cfBLiPDSVhUoPq',
-	amount: 100000000,
+	amount: '100000000',
 	nonce: 121,
 };
 
@@ -481,3 +481,4 @@ const options = {
 18 | 放弃交易
 19 | 包含无效参数
 20 | 失败
+21 | gas price 小于默认值
