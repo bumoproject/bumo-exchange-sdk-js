@@ -409,11 +409,11 @@ bumo.account.checkAddress('buQgE36mydaWh7k4UVdLy5cfBLiPDSVhUoPq').then(data => {
 ----------- | ------------ | ----------------- |
 senderPrivateKey |   String    | 发送者的私钥           |
 receiverAddress |   String    | 目标账户地址           |
-amount |  Number 或 String    | 要转移的数量（单位是MO      |
-nonce |  Number    | 交易序号 (可通过调用bumo.account.getInfo() 函数获得)      |
-gasPrice |  Number    | [可选参数] gas价格(不小于配置的最低值) (单位是MO)|
-feeLimit |  Number    | [可选参数] 愿为交易花费的手续费  (单位是MO)   |
-> 注意：amount, gasPrice和feeLimit的单位是MO，且 1 BU = 10^8 MO
+amount |  String    | 要转移的数量（单位是MO)      |
+nonce |  String   | 交易序号 (可通过调用bumo.account.getInfo() 函数获得)      |
+gasPrice |  String    | [可选参数] gas价格(不小于配置的最低值) (单位是MO)|
+feeLimit |  String   | [可选参数] 愿为交易花费的手续费  (单位是MO)   |
+> 注意：amount, gasPrice和feeLimit的单位是MO，且 1 BU = 10^8 MO. 其值是只能包含数字的字符串且不能以0开头
 
 ###### 返回值
 返回值是一个对象：对象属性如下
@@ -441,7 +441,7 @@ const options = {
 	senderPrivateKey: 'privbsMCSqvv8kJ1A3Zt9RWjDHyG3jRdGpj9Jrgfxw7tdz3jZzhqA55v',
 	receiverAddress: 'buQgE36mydaWh7k4UVdLy5cfBLiPDSVhUoPq',
 	amount: '100000000',
-	nonce: 121,
+	nonce: '121',
 };
 
  bumo.sendBu(options).then(data => {
@@ -482,3 +482,4 @@ const options = {
 19 | 包含无效参数
 20 | 失败
 21 | gas price 小于默认值
+22 | 函数参数格式不正确

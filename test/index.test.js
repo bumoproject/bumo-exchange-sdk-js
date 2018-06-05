@@ -164,26 +164,22 @@ describe('Test bumo-exchange-sdk', function() {
   it('test: sendBu', function(done) {
     co(function* () {
       try {
+        const info = yield bumo.account.getInfo('buQsBMbFNH3NRJBbFRCPWDzjx7RqRc1hhvn1');
+        // console.log(info);
+        const nonce = info.data.nonce;
+
         const options = {
           senderPrivateKey: 'privbwAAXFXsf4z7VtzPtWFmfDM8dEGZ97fsskUaJYeoduCCMxxv8jnH',
           receiverAddress: 'buQtGi7QmaiaMDygKxMAsKPyLicYjPV2xKVq',
-          // receiverAddress: 'buQsBMbFNH3NRJBbFRCPWDzjx7RqRc1hhvn1',
-          // amount: `${Math.pow(2,62)}`,
-          // amount: 100000000 * 0.01,
-          // amount: Number.MAX_VALUE,
-          // amount: '99999999989748001',
-          // amount: `${Math.pow(2,62) - 1 }`,
-          amount: 1000,
-          nonce: 200,
-          // gasPrice: -2,
-          // feeLimit: 100000,
-          // amount: 10000000,
-          // nonce: 121,
-        }
+          amount: '10000000',
+          nonce: nonce + '',
+          // gasPrice: '1000',
+          // feeLimit: '1000000',
+        };
 
         const data = yield bumo.sendBu(options);
         // console.log(data);
-        data.error_code.should.not.equal(0);
+        data.error_code.should.equal(0);
 				done();
       } catch (err) {
 				done(err);
