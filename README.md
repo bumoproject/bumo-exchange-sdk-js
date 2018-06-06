@@ -82,8 +82,8 @@ bumo.getBlockNumber().then(data => {
 const options = {
   senderPrivateKey: 'privbsMCSqvv8kJ1A3Zt9RWjDHyG3jRdGpj9Jrgfxw7tdz3jZzhqA55v',
   receiverAddress: 'buQgE36mydaWh7k4UVdLy5cfBLiPDSVhUoPq',
-  amount: 10000000),
-  nonce: 121,
+  amount: '10000000',
+  nonce: '121',
 }
  bumo.sendBu(options).then(data => {
    console.log(JSON.stringify(data));
