@@ -1,0 +1,257 @@
+syntax = "proto3";
+package protocol;
+option java_package = "io.bumo.sdk.core.extend.protobuf";
+
+import "common.proto";
+
+message Account{
+	string address = 1;
+	int64  nonce = 2; //last transaction seq
+	AccountPrivilege priv = 3;
+	bytes metadatas_hash = 4;	//metadatas_hash = merklehash(metadatas);
+	bytes assets_hash = 5;    //assets_hash = merkelhash(assets)
+	Contract contract = 6;
+	int64 balance = 7;
+}
+
+message AssetKey{
+	 string issuer = 1;
+	 string code = 2;
+	 int32 type = 3;		//0:not limited ammount
+}
+
+//payAsset
+message Asset{
+	 AssetKey	key = 1;
+	 int64		amount = 2;
+}
+
+message AssetProperty{
+	int32 decimal = 1;
+	string description = 2;
+	int64 max_supply = 3;
+	int64 issued_amount = 4;
+	int32 fee_percent = 5;
+}
+
+message AssetStore{
+	AssetKey key = 1; //required
+	int64 amount = 2;
+	AssetProperty property = 3;
+}
+
+
+
+message LedgerHeader
+{
+	int64	seq 		            = 1;
+	bytes	hash 					= 2;
+	bytes	previous_hash 			= 3;
+	bytes	account_tree_hash		= 4;
+	int64   close_time 				= 5;
+	bytes   consensus_value_hash    = 6;
+	int64	version 			    = 7;
+	int64	tx_count 				= 8;
+	bytes   validators_hash = 9;	// hash
+	bytes	fees_hash = 10;
+	string	reserve = 11;
+}
+
+message Ledger{
+	LedgerHeader header = 1;
+    repeated TransactionEnv transaction_envs = 2;
+}
+
+
+message OperationPayAsset
+{
+	string dest_address = 1;
+	Asset asset = 2;
+	string input = 3;
+}
+
+message OperationTypeThreshold{
+	 Operation.Type type = 1;
+	 int64 threshold = 2;
+}
+
+message AccountPrivilege {
+	int64 master_weight = 1;
+	repeated Signer signers = 2;
+	AccountThreshold thresholds = 3;
+	
+}
+
+message AccountThreshold{
+		 int64 tx_threshold = 1; //required, [-1,MAX(INT64)] -1: 表示不设置 indicate no setting
+		 repeated OperationTypeThreshold type_thresholds = 2;  //如果这个设置，则操作门限以这个为准 
+}
+
+message OperationIssueAsset{
+	string code = 1;
+	int64 amount = 2;
+}
+
+message OperationPayCoin{
+	string dest_address = 1;
+	int64 amount = 2;
+	string input = 3;
+}
+
+message OperationSetSignerWeight{
+	 int64 master_weight = 1; //required, [-1,MAX(UINT32)] -1: 表示不设置
+	 repeated Signer signers = 2; //address:weight, 如果weight 为0 表示删除这个signer
+}
+
+message OperationLog{
+	string topic = 1;
+	repeated string datas = 2;
+}
+
+
+message Operation {
+	enum Type {
+			UNKNOWN = 0;
+			CREATE_ACCOUNT 			= 1;
+			ISSUE_ASSET 			= 2;
+			PAY_ASSET               = 3;
+			SET_METADATA			= 4;
+			SET_SIGNER_WEIGHT		= 5;
+			SET_THRESHOLD			= 6;
+			PAY_COIN                = 7;
+			LOG						= 8;
+	};
+	Type type = 1;
+	string source_address = 2;
+	bytes metadata	= 3;
+
+	//
+	OperationCreateAccount		create_account 	   = 4;
+	OperationIssueAsset			issue_asset 	   = 5;
+	OperationPayAsset			pay_asset 		   = 6;
+	OperationSetMetadata		set_metadata	   = 7;
+	OperationSetSignerWeight	set_signer_weight  = 8;
+	OperationSetThreshold		set_threshold 	   = 9;
+	OperationPayCoin			pay_coin           = 10;
+	OperationLog				log				   = 11;
+}
+
+message OperationSetThreshold{
+	    int64 tx_threshold = 1;
+	    repeated OperationTypeThreshold type_thresholds = 2; //type:threshold ，threshold:0 表示删除这个类型的type
+}
+
+message Transaction {
+		enum Limit{
+				UNKNOWN = 0;
+				OPERATIONS = 1000;
+		};
+	
+		string source_address = 1;
+
+		int64 nonce = 2;
+		
+		int64  fee_limit = 3;
+
+		int64  gas_price =4;
+
+		int64 ceil_ledger_seq = 5;
+		
+		bytes metadata = 6;
+
+		repeated Operation operations = 7;
+
+}
+
+message Signer {
+	enum Limit{
+			SIGNER_NONE = 0;
+			SIGNER = 100;
+	};
+		 string address = 1;
+		 int64 weight = 2;
+}
+
+message Trigger{
+	enum TransactionType{
+		NORMAL_TRANSACTION	 = 0;
+		CONTRACT_TRANSACTION = 1;
+	};
+
+	message OperationTrigger{
+		bytes hash = 1;
+		int64 index = 2;
+	}
+	TransactionType transaction_type = 1;
+	int64 ledger_seq = 2;  //如果是特定区块触发的（暂时未提供）
+	OperationTrigger transaction = 3;  //如果是交易触发的
+	
+}
+
+enum Limit{
+		UNKNOWN = 0;
+		SIGNATURE = 100;
+};
+
+message TransactionEnv {
+	Transaction transaction = 1;
+	repeated Signature signatures 	= 2;
+	Trigger trigger = 3;
+}
+
+message TransactionEnvStore{
+		TransactionEnv transaction_env = 1;
+		int32 error_code = 2;
+		string error_desc = 3;
+		int64 ledger_seq = 4;
+		int64 close_time = 5;
+		//for notify
+		bytes hash = 6;
+		int64 actual_fee = 7;
+}
+
+message TransactionEnvSet{
+	repeated TransactionEnv txs = 2;
+}
+
+message ConsensusValueValidation {
+	repeated int32 expire_tx_ids = 1;  //contract execute expired
+	repeated int32 error_tx_ids = 2;
+	//may contain other check
+}
+
+message ConsensusValue{
+	TransactionEnvSet txset = 1;
+	int64 close_time = 2;
+	bytes previous_proof = 3;
+	int64 ledger_seq = 4;
+	bytes previous_ledger_hash = 5;
+	LedgerUpgrade ledger_upgrade = 6;
+	ConsensusValueValidation validation = 7;
+}
+
+message Contract{
+    enum ContractType{
+		JAVASCRIPT = 0;
+	}
+	ContractType type = 1; //合约类型
+	string payload = 2;	   //合约内容,js 代码
+}
+
+//创建账户
+message OperationCreateAccount{
+	string dest_address = 1;
+	Contract contract = 2;
+	AccountPrivilege priv = 3;
+	repeated KeyPair metadatas = 4;	
+	int64	init_balance = 5;
+	string  init_input = 6;
+}
+
+
+message OperationSetMetadata{
+	string	key = 1;  
+	string  value = 2;
+	int64 	version = 3; //可选。metadata的版本号。如果设置了，必须和帐号现有的metadata_version相同。
+	bool    delete_flag = 4;
+}

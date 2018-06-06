@@ -171,10 +171,12 @@ describe('Test bumo-exchange-sdk', function() {
         const options = {
           senderPrivateKey: 'privbwAAXFXsf4z7VtzPtWFmfDM8dEGZ97fsskUaJYeoduCCMxxv8jnH',
           receiverAddress: 'buQtGi7QmaiaMDygKxMAsKPyLicYjPV2xKVq',
-          amount: '10000000',
+          amount: '3000000',
+          // amount: '99999999989748006',
+          // amount: `18446744073709552000`,
           nonce: nonce + '',
-          // gasPrice: '1000',
-          // feeLimit: '1000000',
+          // gasPrice: '-1',
+          // feeLimit: '10',
         };
 
         const data = yield bumo.sendBu(options);
